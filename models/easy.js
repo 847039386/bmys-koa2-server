@@ -60,11 +60,19 @@ exports.removeById = async function(id){
    let info ,datas,model ,result;
    info = { success :false ,msg :'removeById failed' }
    if(id){
-     model = new Promise((res,rej) => {
-       this.findByIdAndRemove(id).exec((err,data) => {
-         err ? rej(err) : res(data)
-       })
-     })
+       if(id instanceof Array){
+         model = new Promise((res,rej) => {
+           this.remove({ _id :{$in :id }}).exec((err,data) => {
+             err ? rej(err) : res(data)
+           })
+         })
+       }else{
+         model = new Promise((res,rej) => {
+           this.findByIdAndRemove(id).exec((err,data) => {
+             err ? rej(err) : res(data)
+           })
+         })
+       }
       try {
         result = await model;
         if(result){

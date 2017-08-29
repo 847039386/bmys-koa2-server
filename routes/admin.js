@@ -38,8 +38,8 @@ router.post('/video/create_video' ,auth.auth_token ,auth.auth_permission() ,othe
 router.post('/video/update_video' ,auth.auth_token ,auth.auth_permission() ,Video.updateVideo) //修改视频
 router.post('/video/removeById',auth.auth_token ,auth.auth_permission(),Video.removeById)   //根据ID删除一个视频，并且删除该文件
 
-router.post('/comment/removeById' ,Comment.removeById)   //根据ID删除一条评论
-router.post('/comment/removeByVideo' ,Comment.removeByVideo)   //删除符合一个Videoid中的所有评论
+router.post('/comment/removeById' ,auth.auth_token ,auth.auth_permission(),Comment.removeById)   //根据ID删除一条评论
+router.post('/comment/removeByVideo' ,auth.auth_token ,auth.auth_permission(),Comment.removeByVideo)   //删除符合一个Videoid中的所有评论
 
 
 router.get('/setting/getWeb' ,auth.auth_token ,auth.auth_permission(),Setting.getWebSetting)   //查询当前web的配置文件
