@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const config = require('../config').db
-mongoose.connect(`mongodb://${config.host}:${config.port || 27017 }/${config.database}`, {
+const config = require('../config')
+mongoose.connect(`mongodb://${config.db.host}:${config.db.port || 27017 }/${config.db.database}`, {
     poolSize :20,
     useMongoClient :true,
 }, function (err) {
@@ -27,3 +27,12 @@ exports.Tag = tag
 exports.Vcurl = vcurl
 exports.FeedbackMsg = feedbackMsg
 exports.Comment = comment
+
+
+//默认注册一个超级管理员。
+admin.register({
+  nickname :"超级管理员",
+  username :config.admin.username,
+  password :config.admin.password,
+  privileges : ["超级管理员"]
+})

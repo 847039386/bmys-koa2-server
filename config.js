@@ -29,5 +29,11 @@ module.exports = {
     websetting :{
       path :'web.setting.json',   //webstting的位置。于app的位置
       key :'redis_websetting'   //存在redis里的key值
+    },
+    //超级管理员的信息
+    admin :{
+      username : 'admin',
+      password : 'admin',
+      email : '847039386@qq.com'
     }
 }

@@ -14,8 +14,8 @@ describe('创建测试数据 并进行http协议验证测试',function(){
   });
   require('./admin.test')
   require('./video.test')
-  require('./comment.test')
-  require('./feedbackMsg.test')
+  // require('./comment.test')      //测试这两个则要开通web.setting.json
+  // require('./feedbackMsg.test')
   require('./vcurl.test')
   require('./tag.test')
 })

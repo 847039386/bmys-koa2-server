@@ -9,7 +9,7 @@ exports.registerAdmin = async function (ctx, next){
     username :ctx.request.body.username,
     password :ctx.request.body.password,
     ip :ctx.ip,
-    privileges :ctx.request.body.privileges
+    privileges :[]
   })
   ctx.body = user
 }
