@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const config = require('../config')
+const md5 = require('md5')
 mongoose.connect(`mongodb://${config.db.host}:${config.db.port || 27017 }/${config.db.database}`, {
     poolSize :20,
     useMongoClient :true,
@@ -33,6 +34,6 @@ exports.Comment = comment
 admin.register({
   nickname :"超级管理员",
   username :config.admin.username,
-  password :config.admin.password,
+  password :md5(config.admin.password),
   privileges : ["超级管理员"]
 })

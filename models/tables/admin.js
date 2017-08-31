@@ -84,24 +84,31 @@ AdminSchema.statics.updateAdmin = async function(id,admin){
  */
 AdminSchema.statics.login = async function (admin){
    let user ,new_user ,info;
-   user = await this.findOneAdmin({ username :admin.username ,password :admin.password })
+   user = await this.findOneAdmin({ username :admin.username })
    if(user.success){
-     let new_token, new_token_time;
-     new_token = UUID.v1() ;
-     new_token_time = Date.now();
-     new_user = await this.updateAdmin(user.data._id,{ token :new_token ,token_time :new_token_time ,oldip :user.data.newip ,newip :admin.ip })
-     if(new_user.success){
-       info = {
-         success :true ,
-         msg :'login success' ,
-         data :{
-           token :new_token
-           ,token_time :new_token_time
-           ,nickname :new_user.data.nickname
-           ,oldip :user.data.newip
-           ,newip :admin.ip
-           ,privileges :new_user.data.privileges
+     if(admin.password == user.data.password){
+       let new_token, new_token_time;
+       new_token = UUID.v1() ;
+       new_token_time = Date.now();
+       new_user = await this.updateAdmin(user.data._id,{ token :new_token ,token_time :new_token_time ,oldip :user.data.newip ,newip :admin.ip })
+       if(new_user.success){
+         info = {
+           success :true ,
+           msg :'login success' ,
+           data :{
+             token :new_token
+             ,token_time :new_token_time
+             ,nickname :new_user.data.nickname
+             ,oldip :user.data.newip
+             ,newip :admin.ip
+             ,privileges :new_user.data.privileges
+           }
          }
+       }
+     }else{
+       info = {
+         success :false ,
+         msg :'password Failed'
        }
      }
    }else{
