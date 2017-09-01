@@ -15,7 +15,7 @@ exports.splitHost = function(filepath){
     host = reg[1];
   }else{
     filepath = path.normalize(filepath)
-    host = filepath.split('\\').length > 1 ? filepath.split('\\')[0] : null;
+    host = filepath.split('\\').length > 1 ? filepath.split('\\')[0] : filepath.split('\/')[0];
   }
   return host;
 }
