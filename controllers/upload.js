@@ -8,7 +8,9 @@ exports.video = async function (ctx, next){
   let result;
   let info = await auth.auth_ok(ctx.params.token,"上传");
   if(info.success){
-    let k2up = new ko2_upload();
+    let k2up = new ko2_upload({
+      uploadPath : 'public/upload/bmxsy'
+    });
     result = await k2up.init( ctx )
   }else{
      result = info;
