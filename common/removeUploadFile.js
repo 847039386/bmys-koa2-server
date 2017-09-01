@@ -25,6 +25,7 @@ exports.splitHost = function(filepath){
  * ext 允许删除的文件后缀名
  */
 exports.fileLocalRemove = async function(filepath ,ext){
+    debug('remove path is a ：' + filepath)
     let exists ,info ,unlink ,success;
     success = true;
     info = { success : false ,msg :''}
@@ -56,6 +57,7 @@ exports.fileLocalRemove = async function(filepath ,ext){
               info = { success :true ,msg :'文件成功删除'}
             }
           } catch (e) {
+            debug('remove file error：' + e)
             info.msg = '文件删除失败'
           }
       }else{

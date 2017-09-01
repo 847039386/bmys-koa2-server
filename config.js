@@ -2,8 +2,8 @@ const path = require('path')
 
 module.exports = {
     app: {
-      port : 3000,      //端口
-      testPort : 3333   //测试端口，一样将不能同时执行
+      port : 3333,      //端口
+      testPort : 3334   //测试端口，一样将不能同时执行
     },
     //数据库信息
     db: {
@@ -14,7 +14,7 @@ module.exports = {
     // redis
     redis: {
       host :'127.0.0.1',
-      port : 6379
+      port : 7480
     },
     //上传路径或者本地
     upload: {
