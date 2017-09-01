@@ -92,7 +92,7 @@ exports.removeById = async function (ctx ,next){
        delVideo = await Video.removeVideo(id)
        if(delVideo.success){
          let rm_videoURL ,rm_videoIMG ,u_msg ,i_msg;
-         rm_videoURL = await util.removeFile(video.data.url,["mp4""png","jpg"])
+         rm_videoURL = await util.removeFile(video.data.url,["mp4","png","jpg"])
          rm_videoIMG = await util.removeFile(video.data.thumb_url,["png","jpg"])
          u_msg = rm_videoURL.success ? `视频文件删除完毕 :${video.data.url}` : `视频文件 :${rm_videoURL.msg}`;
          i_msg = rm_videoIMG.success ? `视频缩略图删除完毕 :${video.data.thumb_url}`  : `视频缩略图 :${rm_videoIMG.msg}`;
